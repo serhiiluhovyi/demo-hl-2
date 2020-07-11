@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  application:
+    name: demo-app
+  main:
+    banner-mode: off
+  flyway:
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    baseline-version: 0
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test_db
+    username: postgres
+    password: postgres

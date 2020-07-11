@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+  postgres:
+    container_name: postgres-db
+    image: 'postgres:9'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=test_db
+    networks:
+      - default
+
+  account:
+    container_name: demo-hl-app
+#    image: svlugovoy/demo-hl-app:tomcat
+#    image: svlugovoy/demo-hl-app:jetty
+    image: svlugovoy/demo-hl-app:undertow
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/test_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    networks:
+      - default
+
+networks:
+  default:

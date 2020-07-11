@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS demo
+(
+    id UUID NOT NULL,
+    body VARCHAR(255) NOT NULL,
+
+    CONSTRAINT pk_post PRIMARY KEY (id)
+);
